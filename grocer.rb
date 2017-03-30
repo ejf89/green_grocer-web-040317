@@ -2,15 +2,20 @@ require "pry"
 
 def consolidate_cart(cart)
 
-     binding.pry
-    products = []
-    counter = 0
-    cart.each do |item|
-        products.push(item.keys())
-        # binding.pry
-    end
-    products = products.flatten
+consolidated = {}
+    cart.each do |val|
+      val.each do |item, obj|
+        if consolidated[item]
+          consolidated[item][:count] += 1
+        else
+          obj[:count] = 1
+          consolidated[item] = obj
+        end
+      end
+  end
+
     # binding.pry
+    consolidated
 
 end
 
